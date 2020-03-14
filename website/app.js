@@ -3,7 +3,9 @@ const data = {};
 /* Global Variables */
 let baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 let apiKey = 'b2d688f909941a2d9ea22ed486d739b1';
-let addApi = '&APPID=';
+
+//Convert from Fahrenheit to Celsius. Logic gotten from https://openweathermap.org/current
+let addApi = '&units=metric&APPID=';
 // Create a new date instance dynamically with JS.... Logic gotten from W3Schools
 let today = new Date();
 let dateTime = today.toString();
@@ -83,8 +85,9 @@ const updateUI = async () => {
     const request = await fetch ('/weather');
     try{
         document.getElementById('date').innerHTML = `<p>Today is ${data.date}</p>`;
-        document.getElementById('temp').innerHTML = `The temperature is ${data.temp}`;
-        document.getElementById('content').innerHTML = `your feelings: ${data.feelings}.`;
+        //Celsius symbol help gotten from https://stackoverflow.com/questions/19477324/how-do-i-calculate-the-temperature-in-celsius-returned-in-openweathermap-org-jso
+        document.getElementById('temp').innerHTML = `The temperature is ${data.temp} &#8451`;
+        document.getElementById('content').innerHTML = `Your feelings: ${data.feelings}`;
 
         
 
